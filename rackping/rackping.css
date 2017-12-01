@@ -1,0 +1,23 @@
+.rackping {
+   background-color: white;
+   text-align: center;
+   margin: 0;
+   padding: 0;
+   font-family: helvetica,arial,sans-serif;
+   font-size: 9pt;
+   color: black;
+}
+
+.rackping a, a:visited, a:active {
+  color: black;
+  text-decoration: underline;
+  border: none;
+  outline: 0;
+}
+
+.rackping a:hover {
+  color: black;
+  text-decoration: underline;
+  border: none;
+  outline: 0;
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#rackping-monitoring-widget-for-wordpress">RackPing Monitoring Widget for WordPress</a><ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#known-bugs">Known Bugs</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#plugin-usage">Plugin Usage</a></li>
+<li><a href="#upgrade">Upgrade</a></li>
+</ul></li>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#frequently-asked-questions">Frequently Asked Questions</a><ul>
+<li><a href="#why-do-i-see-rackping-wordpress-output-unavailable-or-invalid-rackping-login.-in-my-widget">Why do I see &quot;RackPing WordPress output unavailable or invalid RackPing login.&quot; in my widget?</a></li>
+<li><a href="#how-can-i-localize-the-language-of-the-rackping-widget">How Can I Localize the Language of the RackPing Widget?</a></li>
+</ul></li>
+<li><a href="#screenshots">Screenshots</a><ul>
+<li><a href="#rackping-wordpress-widget-setup-page">1. RackPing WordPress widget setup page</a></li>
+<li><a href="#rackping-wordpress-widget-display-with-twenty-ten-theme">2. RackPing WordPress widget display with Twenty Ten theme</a></li>
+</ul></li>
+<li><a href="#availability">Availability</a></li>
+<li><a href="#security">Security</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#changelog">Changelog</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="rackping-monitoring-widget-for-wordpress"><a href="#TOC">RackPing Monitoring Widget for WordPress</a></h1>
+<h2 id="summary"><a href="#TOC">Summary</a></h2>
+<pre><code>Contributors: RackPing
+Tags: monitoring, widget, badge
+Requires at least: 2.8
+Tested up to: 4.9.1
+Stable tag: 1.0
+License: GPLv2</code></pre>
+<h2 id="description"><a href="#TOC">Description</a></h2>
+<p>RackPing monitors your web site and helps you visualize connection and performance problems. This WordPress widget lets you display a small image of RackPing Monitoring results on your blog.</p>
+<h2 id="known-bugs"><a href="#TOC">Known Bugs</a></h2>
+<ul>
+<li>None.</li>
+</ul>
+<p>Please send email to support@rackping.com with your suggestions.</p>
+<h2 id="installation"><a href="#TOC">Installation</a></h2>
+<p>Installing the RackPing Monitoring widget is the same as any other single-site WordPress widget:</p>
+<ol style="list-style-type: decimal">
+<li>Extract all files from the ZIP file, <strong>making sure to keep the file/folder structure intact</strong>, and then, upload the RackPing plugin folder and files to your WordPress server. A typical directory location for the rackping widget folder is: /usr/share/wordpress/wp-content/plugins/rackping</li>
+</ol>
+<p><strong>See Also:</strong> <a href="http://codex.wordpress.org/Managing_Plugins#Installing_Plugins">&quot;Installing Plugins&quot; article on the WP Codex</a></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Check the following two files exist and have writable permissions by your web server:</li>
+</ol>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> /usr/share/wordpress/wp-content/plugins/rackping
+<span class="kw">touch</span> rackping_graph.png; <span class="kw">chmod</span> 666 rackping_graph.png;
+<span class="kw">touch</span> rackping.log.php; <span class="kw">chmod</span> 666 rackping.log.php;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>&quot;Plugins ... Activate&quot;, &quot;Appearance ... Widgets ... RackPing Monitoring&quot;, then enter your <a href="https://www.rackping.com/">RackPing login credentials (email, Blog key and Monitor ID)</a>.</li>
+</ol>
+<p>You're done. Enjoy!</p>
+<h3 id="plugin-usage"><a href="#TOC">Plugin Usage</a></h3>
+<p>Use the RackPing widget wherever widgets are allowed in your WordPress theme.</p>
+<h3 id="upgrade"><a href="#TOC">Upgrade</a></h3>
+<p>Upgrade using the Wordpress Admin or overwrite your files/folder with the new files/folder, then deactivate and reactivate under &quot;Plugins&quot;.</p>
+<h2 id="dependencies"><a href="#TOC">Dependencies</a></h2>
+<ul>
+<li>Uses WordPress 3.2+ API only.</li>
+<li>No external or other dependencies.</li>
+</ul>
+<h2 id="frequently-asked-questions"><a href="#TOC">Frequently Asked Questions</a></h2>
+<h3 id="why-do-i-see-rackping-wordpress-output-unavailable-or-invalid-rackping-login.-in-my-widget"><a href="#TOC">Why do I see &quot;RackPing WordPress output unavailable or invalid RackPing login.&quot; in my widget?</a></h3>
+<ul>
+<li><p>Ensure you are using the latest version of the widget. If you are still getting this message, most likely you've entered an invalid email, Monitor ID or Blog key, or you have just installed the widget.</p></li>
+<li><p>Check permissions on the downloaded graph file, rackping_graph.png, and the logfile, rackping.log.php.</p></li>
+<li><p>Deactivate the widget and reactivate it under &quot;Plugins&quot; then &quot;Appearance ... Widgets&quot;.</p></li>
+<li><p>If you still have problems after trying these solutions, email RackPing support.</p></li>
+</ul>
+<h3 id="how-can-i-localize-the-language-of-the-rackping-widget"><a href="#TOC">How Can I Localize the Language of the RackPing Widget?</a></h3>
+<p>For now, just make a backup of rackping.php, and then update the link with lang=en to your language code, and translate the following phrases in-place: &quot;RackPing Performance Graph&quot; and &quot;Updated&quot;.</p>
+<h2 id="screenshots"><a href="#TOC">Screenshots</a></h2>
+<h3 id="rackping-wordpress-widget-setup-page"><a href="#TOC">1. RackPing WordPress widget setup page</a></h3>
+<div class="figure">
+<embed src="images/screenshot-1.png?raw=true" title="Widget setup page"><p class="caption">RackPing WordPress widget setup page</p>
+</div>
+<h3 id="rackping-wordpress-widget-display-with-twenty-ten-theme"><a href="#TOC">2. RackPing WordPress widget display with Twenty Ten theme</a></h3>
+<div class="figure">
+<embed src="images/screenshot-2.png?raw=true" title="Widget display with Twenty Ten theme"><p class="caption">RackPing WordPress widget display with Twenty Ten theme</p>
+</div>
+<h2 id="availability"><a href="#TOC">Availability</a></h2>
+<p>For maximum availability, please read the following:</p>
+<ol style="list-style-type: decimal">
+<li>The plugin data file, rackping_graph.png, used to periodically save data must exist and be writable by the web server user.</li>
+<li>The logfile, rackping.log.php, though optional is helpful for debugging problems. It is automatically truncated after 50,000 bytes.</li>
+<li>The RackPing widget has comprehensive error handling, so should reliably operate without intervention.</li>
+<li>You may want to use an internal monitoring tool on your system, web server or PHP error logs (see php.ini for the error log setting) and rackping.log.php.</li>
+<li>The updated monitoring image is refreshed every 15 minutes or so by the WordPress scheduler. Each page view of your blog will read it from the file cache, rackping_graph.png.</li>
+</ol>
+<h2 id="security"><a href="#TOC">Security</a></h2>
+<p>For maximum security when using WordPress plugins:</p>
+<ol style="list-style-type: decimal">
+<li>The WordPress MySQL user should only access the <code>wordpress</code> database.</li>
+<li>Plugin program files should be owned by an OS user different than the web server or mysqld user, such as <code>root</code> on linux.</li>
+<li>The RackPing widget uses SSL when periodically retrieving the graph data.</li>
+<li>The RackPing monitoring Blog key can only read graph data. It does not have access to other account settings. (Use your RackPing Blog Key, not the RackPing API Key.)</li>
+<li>The logfile, rackping.log.php, has a PHP header to prevent web users from reading the log entries if your web server is correctly configured to process PHP scripts.</li>
+</ol>
+<h2 id="troubleshooting"><a href="#TOC">Troubleshooting</a></h2>
+<ol style="list-style-type: lower-alpha">
+<li>after copying the widget, you can verify that you have the right version of PHP with:</li>
+</ol>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ php -l rackping.php
+No syntax errors detected <span class="kw">in</span> rackping.php</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>if the widget is working correctly, the file rackping_graph.png should be populated immediately after plugin activatio and updated every 15 minutes or so. Try reloading your blog a few times to trigger the WordPress scheduler.</p></li>
+<li><p>error messages will be logged to rackping.log.php and your web server's error log.</p></li>
+<li><p>You can enable limited debug logging with:</p></li>
+</ol>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">echo</span> 1 <span class="kw">&gt;</span>debug</code></pre>
+<p>To disable debugging output:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">rm</span> debug</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>if the widget appears to be installed correctly but rackping_graph.png is empty or not being updated every 15 minutes or so, there may be multiple, differing copies of your RackPing login credentials in the MySQL WordPress options table:</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li><p>Click on &quot;Appearances ... RackPing Monitoring ... Delete&quot; and &quot;Plugins ... Deactivate&quot;</p></li>
+<li><p>Start your MySQL client program and Delete the old RackPing WordPress options row:</p></li>
+</ol>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">use</span> wordpress;
+<span class="kw">select</span> option_id <span class="kw">into</span> @a <span class="kw">from</span> wp_options <span class="kw">where</span> option_name=<span class="st">&#39;widget_rackping&#39;</span> <span class="kw">limit</span> <span class="dv">1</span>;
+<span class="kw">select</span> @a;
+<span class="kw">delete</span> <span class="kw">from</span> wp_options <span class="kw">where</span> option_id=@a;</code></pre>
+<h2 id="changelog"><a href="#TOC">Changelog</a></h2>
+<p><strong>1.0</strong> <em>Release Date - 15 November 2017</em></p>
+<ul>
+<li>Initial release.</li>
+</ul>
+</body>
+</html>
