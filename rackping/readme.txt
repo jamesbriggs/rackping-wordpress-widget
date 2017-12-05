@@ -24,7 +24,7 @@ Installing the RackPing Monitoring widget is the same steps as any other WordPre
 
 `cd /usr/share/wordpress/wp-content/plugins/rackping;`
 `touch rackping_graph.png; chmod 666 rackping_graph.png;`
-`touch rackping.log.php; chmod 666 rackping.log.php;`
+`touch rackping_log.php; chmod 666 rackping_log.php;`
 
 3. "Plugins ... Activate", "Appearance ... Widgets ... RackPing Monitoring", then enter your RackPing login info (email, Monitor ID and Blog key)
 
@@ -36,7 +36,7 @@ You're done. Enjoy!
 
 * Ensure you are using the latest version of the widget. If you are still getting this message, most likely you've entered an invalid email, Monitor ID or Blog key, or you have just installed the widget.
 
-* Check permissions on the downloaded graph file, rackping_graph.png, and the logfile, rackping.log.php.
+* Check permissions on the downloaded graph file, rackping_graph.png, and the logfile, rackping_log.php.
 
 * Deactivate the widget and reactivate it under "Plugins" then "Appearance ... Widgets".
 
@@ -54,9 +54,9 @@ a. after copying the widget, you can verify that you have the right version of P
 `$ php -l rackping.php`
 `No syntax errors detected in rackping.php`
 
-b. if the widget is working correctly, the file rackping_graph.png should be populated immediately after plugin activatio and updated every 15 minutes or so. Try reloading your blog a few times to trigger the WordPress scheduler.
+b. if the widget is working correctly, the file rackping_graph.png should be populated immediately after plugin activation and updated every 15 minutes or so. Try reloading your blog a few times to trigger the WordPress scheduler.
 
-c. error messages will be logged to rackping.log.php and your web server's error_log.
+c. error messages will be logged to rackping_log.php and your web server's error_log.
 
 d. You can enable limited debug logging with:
 
@@ -70,7 +70,7 @@ e. if the widget appears to be installed correctly but rackping_graph.png is emp
 
 1. Click on "Appearances ... RackPing Monitoring ... Delete" and "Plugins ... Deactivate"
 
-2. Start your MySQL client program and Delete the RackPing WordPress options row:
+2. Start your MySQL client program and delete the RackPing WordPress options row:
 
 `use wordpress;`
 `select option_id into @a from wp_options where option_name='widget_rackping' limit 1;`
@@ -122,9 +122,9 @@ For now, make a backup of rackping.php, and then update the link with lang=en to
 For maximum availability, please read the following:
 
 1. The plugin data file, rackping_graph.png, used to periodically save data must exist and be writable by the web server user.
-2. The logfile, rackping.log.php, though optional is helpful for debugging problems. It is automatically truncated after 50,000 bytes.
+2. The logfile, rackping_log.php, though optional is helpful for debugging problems. It is automatically truncated after 50,000 bytes.
 3. The RackPing widget has comprehensive error handling, so should reliably operate without intervention.
-4. You may want to use an internal monitoring tool on your system, web server or PHP error logs (see php.ini for the error_log setting) and rackping.log.php.
+4. You may want to use an internal monitoring tool on your system, web server or PHP error logs (see php.ini for the error_log setting) and rackping_log.php.
 5. The updated monitoring image is refreshed once every 15 minutes or so by the WordPress scheduler. Each page view of your blog will read it from the file cache, rackping_graph.png.
 
 == Security ==
@@ -135,5 +135,5 @@ For maximum security when using WordPress plugins:
 2. Plugin program files should be owned by an OS user different than the web server or mysqld user, such as `root` on linux.
 3. The RackPing widget uses SSL when periodically retrieving the graph data.
 4. The RackPing monitoring Blog key can only read graph data. It does not have access to other account settings. (Use your RackPing Blog Key, not the RackPing API Key.)
-5. The logfile, rackping.log.php, has a PHP header to prevent web users from reading the log entries if your web server is correctly configured to process PHP scripts.
+5. The logfile, rackping_log.php, has a PHP header to prevent web users from reading the log entries if your web server is correctly configured to process PHP scripts.
 

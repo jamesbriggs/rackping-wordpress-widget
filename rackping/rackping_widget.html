@@ -78,7 +78,7 @@ License: GPLv2</code></pre>
 </ol>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cd</span> /usr/share/wordpress/wp-content/plugins/rackping
 <span class="kw">touch</span> rackping_graph.png; <span class="kw">chmod</span> 666 rackping_graph.png;
-<span class="kw">touch</span> rackping.log.php; <span class="kw">chmod</span> 666 rackping.log.php;</code></pre>
+<span class="kw">touch</span> rackping_log.php; <span class="kw">chmod</span> 666 rackping_log.php;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>&quot;Plugins ... Activate&quot;, &quot;Appearance ... Widgets ... RackPing Monitoring&quot;, then enter your <a href="https://www.rackping.com/">RackPing login credentials (email, Blog key and Monitor ID)</a>.</li>
 </ol>
@@ -96,7 +96,7 @@ License: GPLv2</code></pre>
 <h3 id="why-do-i-see-rackping-wordpress-output-unavailable-or-invalid-rackping-login.-in-my-widget"><a href="#TOC">Why do I see &quot;RackPing WordPress output unavailable or invalid RackPing login.&quot; in my widget?</a></h3>
 <ul>
 <li><p>Ensure you are using the latest version of the widget. If you are still getting this message, most likely you've entered an invalid email, Monitor ID or Blog key, or you have just installed the widget.</p></li>
-<li><p>Check permissions on the downloaded graph file, rackping_graph.png, and the logfile, rackping.log.php.</p></li>
+<li><p>Check permissions on the downloaded graph file, rackping_graph.png, and the logfile, rackping_log.php.</p></li>
 <li><p>Deactivate the widget and reactivate it under &quot;Plugins&quot; then &quot;Appearance ... Widgets&quot;.</p></li>
 <li><p>If you still have problems after trying these solutions, email RackPing support.</p></li>
 </ul>
@@ -115,9 +115,9 @@ License: GPLv2</code></pre>
 <p>For maximum availability, please read the following:</p>
 <ol style="list-style-type: decimal">
 <li>The plugin data file, rackping_graph.png, used to periodically save data must exist and be writable by the web server user.</li>
-<li>The logfile, rackping.log.php, though optional is helpful for debugging problems. It is automatically truncated after 50,000 bytes.</li>
+<li>The logfile, rackping_log.php, though optional is helpful for debugging problems. It is automatically truncated after 50,000 bytes.</li>
 <li>The RackPing widget has comprehensive error handling, so should reliably operate without intervention.</li>
-<li>You may want to use an internal monitoring tool on your system, web server or PHP error logs (see php.ini for the error log setting) and rackping.log.php.</li>
+<li>You may want to use an internal monitoring tool on your system, web server or PHP error logs (see php.ini for the error log setting) and rackping_log.php.</li>
 <li>The updated monitoring image is refreshed every 15 minutes or so by the WordPress scheduler. Each page view of your blog will read it from the file cache, rackping_graph.png.</li>
 </ol>
 <h2 id="security"><a href="#TOC">Security</a></h2>
@@ -127,7 +127,7 @@ License: GPLv2</code></pre>
 <li>Plugin program files should be owned by an OS user different than the web server or mysqld user, such as <code>root</code> on linux.</li>
 <li>The RackPing widget uses SSL when periodically retrieving the graph data.</li>
 <li>The RackPing monitoring Blog key can only read graph data. It does not have access to other account settings. (Use your RackPing Blog Key, not the RackPing API Key.)</li>
-<li>The logfile, rackping.log.php, has a PHP header to prevent web users from reading the log entries if your web server is correctly configured to process PHP scripts.</li>
+<li>The logfile, rackping_log.php, has a PHP header to prevent web users from reading the log entries if your web server is correctly configured to process PHP scripts.</li>
 </ol>
 <h2 id="troubleshooting"><a href="#TOC">Troubleshooting</a></h2>
 <ol style="list-style-type: lower-alpha">
@@ -137,7 +137,7 @@ License: GPLv2</code></pre>
 No syntax errors detected <span class="kw">in</span> rackping.php</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><p>if the widget is working correctly, the file rackping_graph.png should be populated immediately after plugin activatio and updated every 15 minutes or so. Try reloading your blog a few times to trigger the WordPress scheduler.</p></li>
-<li><p>error messages will be logged to rackping.log.php and your web server's error log.</p></li>
+<li><p>error messages will be logged to rackping_log.php and your web server's error log.</p></li>
 <li><p>You can enable limited debug logging with:</p></li>
 </ol>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">echo</span> 1 <span class="kw">&gt;</span>debug</code></pre>
