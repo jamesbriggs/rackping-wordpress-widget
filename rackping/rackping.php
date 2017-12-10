@@ -7,10 +7,17 @@
  * Version:       1.0
  * Author:        James Briggs, RackPing.com
  * Copyright:     2017 Rackping.com, USA
+ * Lint:          php -l rackping.php
+ * Note:          the WordPress scheduler is not activated unless there is blog traffic, so when testing this plugin, reload a blog page
 */
 
 // Make sure we don't expose any info if called directly.
 if (!function_exists('add_action')) { echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.'; exit; }
+
+// Report all PHP errors (see changelog)
+error_reporting(E_ALL);
+
+// don't use dashes in define() names
 
 define('RACKPING_VERSION',                 '1.0.0');
 define('RACKPING_CLASS',                   'rackping');
@@ -63,9 +70,9 @@ function rackping_get_graph() {
       return 1;
    }
    else {
-      if ((file_exists($filepath) and (time()-filemtime($filepath) >= RACKPING_UPDATE_INTERVAL_SECONDS)) and
-          (file_exists(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE ) and (time()-filemtime(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE) >= RACKPING_UPDATE_INTERVAL_SECONDS))) {
-         rackping_log("Files are less than one minute old, returning.", __LINE__);
+      if ((file_exists($filepath) and (time()-filemtime($filepath) < RACKPING_UPDATE_INTERVAL_SECONDS)) and
+          (file_exists(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE ) and (time()-filemtime(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE) < RACKPING_UPDATE_INTERVAL_SECONDS))) {
+         rackping_log("Files are less than " . RACKPING_UPDATE_INTERVAL_SECONDS . " seconds old, returning.", __LINE__);
          return 1;
       }
 
@@ -86,6 +93,7 @@ function rackping_get_graph() {
             rackping_log("write graph status=${ret}. " . RACKPING_HELP_MSG, __LINE__);
             return 1;
          }
+         rackping_log("update ok", __LINE__);
       }
       else {
          rackping_log("Failed to retrieve RackPing graph because DNS timeout, no connection or HTTP error response. Check your Internet connection or try again later", __LINE__);
