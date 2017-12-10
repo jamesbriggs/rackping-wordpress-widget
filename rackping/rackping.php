@@ -43,7 +43,7 @@ add_action('rackping_get', 'rackping_get_graph');
 function rackping_define_cron_rackping_widget($schedules) {
    $schedules['rackping_interval'] = array(
       'interval'=> RACKPING_UPDATE_INTERVAL_SECONDS,
-      'display'=>  __('Once Every 5 minutes')
+      'display'=>  __('Once Every 15 minutes')
    );
 
    return $schedules;

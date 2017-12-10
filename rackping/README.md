@@ -35,7 +35,7 @@ Installing the RackPing Monitoring widget is the same as any other single-site W
 2. Check the following two files exist and have writable permissions by your web server:
 
 ```bash
-cd /usr/share/wordpress/wp-content/plugins/rackping
+cd /usr/share/wordpress/wp-content/plugins/rackping;
 touch rackping_graph.png; chmod 666 rackping_graph.png;
 touch rackping_log.php; chmod 666 rackping_log.php;
 ```
