@@ -8,13 +8,13 @@
  * Author:        James Briggs, RackPing.com
  * Copyright:     2017 Rackping.com, USA
  * Lint:          php -l rackping.php
- * Note:          the WordPress scheduler is not activated unless there is blog traffic, so when testing this plugin, reload a blog page
+ * Note:          the WordPress scheduler is not activated unless there is blog traffic, so when testing this plugin, reload a blog page. See https://core.trac.wordpress.org/ticket/42866
 */
 
 // Make sure we don't expose any info if called directly.
 if (!function_exists('add_action')) { echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.'; exit; }
 
-// Report all PHP errors (see changelog)
+// Report all PHP errors (see php_errors.log)
 error_reporting(E_ALL);
 
 // don't use dashes in define() names
@@ -24,6 +24,7 @@ define('RACKPING_CLASS',                   'rackping');
 define('RACKPING_MINIMUM_WP_VERSION' ,     '2.8');
 define('RACKPING_DELETE_LIMIT',            50000);
 define('RACKPING_UPDATE_INTERVAL_SECONDS', 900);
+define('RACKPING_UPDATE_SKEW_SECONDS',     45); // WP scheduler is best-effort so tasks can start before the update interval. This is the tolerance in seconds of early task runs.
 define('RACKPING_HTTP_TIMEOUT',            10);
 define('RACKPING_PLUGIN_DIR',              plugin_dir_path(__FILE__));
 define('RACKPING_PLUGIN_URL',              plugins_url() . '/' . RACKPING_CLASS);
@@ -70,9 +71,10 @@ function rackping_get_graph() {
       return 1;
    }
    else {
-      if ((file_exists($filepath) and (time()-filemtime($filepath) < RACKPING_UPDATE_INTERVAL_SECONDS)) and
-          (file_exists(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE ) and (time()-filemtime(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE) < RACKPING_UPDATE_INTERVAL_SECONDS))) {
-         rackping_log("Files are less than " . RACKPING_UPDATE_INTERVAL_SECONDS . " seconds old, returning.", __LINE__);
+      $interval = RACKPING_UPDATE_INTERVAL_SECONDS - RACKPING_UPDATE_SKEW_SECONDS;
+      if ((file_exists($filepath) and (time()-filemtime($filepath) < $interval)) and
+          (file_exists(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE ) and (time()-filemtime(RACKPING_PLUGIN_DIR . '/' . RACKPING_LOGFILE) < $interval))) {
+         rackping_log("Files are less than ${interval} seconds old, returning", __LINE__);
          return 1;
       }
 
